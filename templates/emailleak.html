@@ -1,0 +1,209 @@
+{% extends 'navigation.html' %}
+{% block body %}
+<style>
+    .heading {
+        max-width: 700px;
+        margin: 96px auto 0 auto;
+        padding: 20px;
+        text-align: center;
+        font-family: "Radio Canada Big", sans-serif;
+        font-size: 50px;
+        font-weight: 700;
+        color: var(--heading);
+    }  
+    .description {
+        max-width: 700px;
+        margin: -5px auto 0 auto;
+        padding: 20px;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        color: var(--description);
+    }
+    .inspiration {
+        max-width: 700px;
+        margin: -5px auto 0 auto;
+        padding: 5px;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 15px;
+        color: var(--description);
+    }
+    .inspiration a {
+        text-decoration: none;
+    }
+    .form {
+        max-width: 700px;
+        margin: 17px auto 0 auto;
+        padding: 20px;
+        text-align: center;
+        background-color: var(--formBg);
+        backdrop-filter: blur(var(--formBlurAmount));
+        border-radius: 10px;
+        box-shadow: 0 12px 14px rgba(0, 0, 0, 0.2);
+    }
+    .form input[type=email] {
+        background-color: var(--formBg);
+        backdrop-filter: blur(var(--formBlurAmount));
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .submit-btn {
+        position: relative;
+        margin: auto;
+        padding: 12px 18px;
+        transition: all 0.2s ease;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+    .submit-btn:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        border-radius: 50px;
+        background: var(--submitButtonBg);
+        width: 45px;
+        height: 45px;
+        transition: all 0.3s ease;
+    }
+    .submit-btn span {
+        position: relative;
+        font-family: "Ubuntu", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: var(--submitButtonText);
+    }
+    .submit-btn svg {
+        position: relative;
+        top: 0;
+        margin-left: 10px;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: var(--submitButtonArrow);
+        stroke-width: 2;
+        transform: translateX(-5px);
+        transition: all 0.3s ease;
+    }
+    .submit-btn:hover:before {
+        width: 100%;
+        background: var(--submitButtonBg);
+    }
+    
+    .submit-btn:hover svg {
+        transform: translateX(0);
+    }
+    
+    .submit-btn:active {
+        transform: scale(0.95);
+    }
+
+#jsonData {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 60px auto 0 auto;
+    padding: 20px;
+    font-family: "Montserrat", sans-serif;
+    background-color: var(--outputBg);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 12px 14px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#jsonData hr {
+    width: 550px;
+    border: 1px solid #00000030;
+}
+#jsonData #caution {
+    color: red;
+}
+.detailsContainer {
+    display: flex;
+    align-items: flex-start;
+    width: 600px;
+    padding: 10px;
+}
+
+.detailsContainer img {
+    align-self: center;
+    filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px -1px 0 black);
+    width: 100px;
+    margin-right: 20px;
+    -webkit-filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px -1px 0 black);
+}
+
+.details {
+    width: 250px;
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.details div {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    margin-bottom: -20px;
+}
+
+.details div strong {
+    width: 250px;
+    margin-right: 20px; 
+}
+.details div p {
+    width: 300px;
+    margin-right: 20px;
+}
+
+.resultData {
+    flex-grow: 1;
+    white-space: pre-wrap;
+    margin-right: 20px;
+}
+
+.resultData{
+    margin-left: -88px;
+}
+
+
+</style>
+<h1 class="heading">Is your Email breached ?</h1>
+<p class="description">Make sure your email information isn't exposed in DarkWeb</p>
+<p class="inspiration">This Tool is inspired from <a href="https://haveibeenpwned.com/">';-- have i been pawned?</a><br>And is privacy focused so you don't need a account to check. And it is Ad-free</p>
+<div class="container">
+    <div class="form">
+        <form method="POST">
+            <input type="email" id="email" name="email" placeholder="user@example.com" required>
+            <br>
+            <button type="submit" class="submit-btn">
+                <span id="submit">Scan</span>
+                <svg width="15px" height="10px" viewBox="0 0 13 10">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+            </button>
+        </form>
+    </div>
+    <div >
+        <div class="jsonData_class" id="jsonData"></div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/email_api_fetch.js') }}"></script>
+{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

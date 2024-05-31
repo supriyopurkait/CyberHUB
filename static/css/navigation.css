@@ -1,0 +1,289 @@
+:root {
+    --background: #e7e4d6;
+    --backgroundFloats: rgba(0, 0, 0, 0.366);
+    --loading: #0800ff;
+    --menuitemsBg: rgba(0, 0, 0, 0.9);
+    --menuitemsText: #f2f2f2;
+    --menuitemsHoverText: #000;
+    --menuitemsHoverBg: #d6d6d6;
+    --menuitemsActiveBg: rgba(0, 13, 61, 0.9);
+    --menuitemsActiveText: #ffffff;
+    --heading: #000;
+    --description: #474747;
+    --listElements: #373737;
+    --formBg: #f5f5f52b;
+    --outputBg: #f5f5f52b;
+    --formBlurAmount: 5px;
+    --outputText: #000;
+    --toggleText: #78768d;
+    --toggleButton: #fff;
+    --toggleButtonDecrypt: #05012c;
+    --toggleButtonEncrypt: #ffb500;
+    --submitButtonText: #234567;
+    --submitButtonBg: #b1dae7;
+    --submitButtonArrow: #234567;
+    --popupBg: #555;
+    --popupText: #fff;
+}
+body{
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#progress {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: -6px;
+	width: 1%;
+	height: 3px;
+    background-color: var(--loading);
+    -moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+    -moz-transition: width 1000ms ease-out,opacity 500ms linear;
+	-ms-transition: width 1000ms ease-out,opacity 500ms linear;
+	-o-transition: width 1000ms ease-out,opacity 500ms linear;
+	-webkit-transition: width 1000ms ease-out,opacity 500ms linear;
+	transition: width 1000ms ease-out,opacity 500ms linear;
+}
+#progress b + i {
+    position: absolute;
+    top: 0;
+    height: 3px;
+    -moz-box-shadow: #777777 1px 0 6px 1px;
+    -ms-box-shadow: #777777 1px 0 6px 1px;
+    -webkit-box-shadow: #777777 1px 0 6px 1px;
+    box-shadow: #777777 1px 0 6px 1px;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+}
+#progress b {
+    clip: rect(-6px, 22px, 14px, 10px);
+    opacity: .6;
+    width: 20px;
+    right: 0;
+}
+#progress i {
+    clip: rect(-6px, 90px, 14px, -6px);
+    opacity: .6;
+    width: 180px;
+    right: -80px;
+}
+
+.topnav {
+    background-color: var(--menuitemsBg);
+    z-index: 99;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.topnav img {
+    position: fixed;
+    height: 50px;
+    top: 0;
+    left: 0;
+    padding: 5px;
+}
+.topnav #logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.topnav a {
+    color: var(--menuitemsText);
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+    font-family: "Radio Canada Big", sans-serif;
+    font-size: 14px;
+}
+.topnav a:hover:not(:first-child) {
+    background-color: var(--menuitemsHoverBg);
+    color: var(--menuitemsHoverText);
+    padding: 18px 14px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    font-size: 15px;
+    transition: 0.5s;
+    -webkit-transition: 0.7s;
+    -moz-transition: 0.7s;
+    -ms-transition: 0.7s;
+    -o-transition: 0.7s;
+}
+.topnav a.active {
+    background-color: var(--menuitemsActiveBg);
+    color: var(--menuitemsActiveText);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+.topnav .icon {
+    display: none;
+}
+
+.area{
+    position: fixed;
+    background: var(--background);  
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    width: 100%;
+    height:100vh;
+    z-index: -999;
+    left: 0;
+    top: 0;
+}
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: var(--backgroundFloats);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+}
+
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+    left: 55%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+
+@media screen and (max-width: 1155px) {
+    .topnav a:not(:first-child) {
+        display: none;
+        backdrop-filter: blur(var(--formBlurAmount));
+    }
+    .topnav a.icon {
+    float: right;
+    display: block;
+    }
+}
+@media screen and (max-width: 1155px) {
+    .topnav.responsive {
+        position: fixed;
+        padding-top: 50px;
+        width: 100%;
+        /* right: 0; */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    }
+    .topnav.responsive a {
+    display: flex;
+    text-align: center;
+    }
+}

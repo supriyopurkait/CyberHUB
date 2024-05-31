@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberHub</title>
+    <link rel="shortcut icon" href="../static/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/navigation.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Radio+Canada+Big:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+</head>
+<script src="../static/js/navigation.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.6.0/sha1.min.js"></script>
+<body>
+    <div id="loader"></div>
+    <div class="area" >
+        <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+        </ul>
+    </div >
+    <div class="navigation">
+        <div class="topnav" id="Topnav">
+            <a href="{{ url_for('index_home') }}" id="logo"><img src="../static/assets/icon_full_lite.png" alt="" srcset=""></a>
+            <a href="{{ url_for('index_home') }}" class="menuitems" id="index">Home</a>
+            <a href="{{ url_for('securemessage') }}" class="menuitems" id="securemessage">Secure Message</a>
+            <a href="{{ url_for('hashid') }}" class="menuitems" id="hashid">Hash Identifier</a>
+            <a href="{{ url_for('passwordleak') }}" class="menuitems" id="passwordleak">DarkWeb Password Leak Check</a>
+            <a href="{{ url_for('emailleak') }}" class="menuitems" id="emailleak">DarkWeb Email Leak Check</a>
+            <a href="{{ url_for('help') }}" class="menuitems" id="help">Help & FAQ</a>
+            <a href="javascript:void(0);" class="icon" onclick="responsive()">
+                <svg width="20px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 18L20 18" stroke="#d9d9d9" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M4 12L20 12" stroke="#d9d9d9" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M4 6L20 6" stroke="#d9d9d9" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const serverIp = "{{ server_ip }}";
+    </script>
+    {% block body%}
+
+    {% endblock %}

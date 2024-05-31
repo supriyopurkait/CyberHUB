@@ -1,0 +1,73 @@
+{%extends 'navigation.html' %}
+{% block body%}
+<style>
+.home{
+    height: max-content;
+    padding: 80px 150px 20px 80px;
+}
+.home h1 {
+    color: var(--heading);
+    font-family: "Radio Canada Big", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+}
+.home p {
+    color: var(--description);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 450;
+    font-size: 16px;
+}
+.home ul li{
+    color: var(--listElements);
+    list-style: none;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+.home ul li:before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-image: url("../static/assets/ul.svg");
+    transform: translateY(-4px);
+    -webkit-transform: translateY(-4px);
+    -moz-transform: translateY(-4px);
+    -ms-transform: translateY(-4px);
+    -o-transform: translateY(-4px);
+}
+@media screen and (max-width: 1155px) {
+    .home{
+        padding: 50px 30px;
+    }
+    .home p {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+    }
+}
+</style>
+    <div class="home">
+        <h1>Safeguard Your Digital World with CyberHUB</h1>
+        <p>In today's digital age, data security is paramount. CyberHUB is an innovative web app designed to empower you with robust tools for real-time data protection and breach prevention.</p>
+        <p>With CyberHUB, you can:</p>
+        <ul>
+            <li>Verify data integrity through advanced hash identification</li>
+            <li>Check for email and password breaches in real-time using external APIs</li>
+            <li>Encrypt and decrypt messages securely, ensuring confidentiality</li>
+        </ul>
+        <p>CyberHUB's user-friendly interface and collaborative backend processing make cybersecurity accessible to everyone, regardless of technical expertise. Protect your digital assets with confidence and stay ahead of evolving cyber threats.</p>
+        <p>Explore our comprehensive suite of tools and embark on a journey towards a safer digital future. Get started with CyberHUB today!</p>
+    </div>
+{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

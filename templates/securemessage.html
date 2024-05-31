@@ -1,0 +1,341 @@
+{% extends 'navigation.html' %} {% block body %}
+<style>
+  .container {
+    max-width: 700px;
+    margin: 87px auto 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .container h1 {
+    color: var(--heading);
+    font-family: "Radio Canada Big", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+  }
+
+  .description {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    color: var(--description);
+    margin-bottom: 30px;
+  }
+
+  .form-container {
+    background-color: var(--formBg);
+    backdrop-filter: blur(var(--formBlurAmount));
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 12px 14px rgba(0, 0, 0, 0.2);
+  }
+
+  .field {
+    background-color: var(--formBg);
+    backdrop-filter: blur(var(--formBlurAmount));
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .json-data {
+    margin-top: 30px;
+    padding: 20px 20px -10px 20px;
+    background-color: var(--outputBg);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 12px 14px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #jsonDataDisplay {
+    color: var(--outputText);
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-right: 10px;
+    flex-direction: row;
+  }
+
+  .copiedtext {
+    visibility: hidden;
+    width: 160px;
+    background-color: var(--popupBg);
+    color: var(--popupText);
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 1;
+    top: -45px;
+    margin-left: -63px;
+}
+  .copiedtext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--popupBg) transparent transparent transparent;
+  }
+  .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 2s;
+    animation: fadeIn 2s;
+}
+  @-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+  .checkbox-wrapper-35 .switch {
+    display: none;
+  }
+
+  .checkbox-wrapper-35 .switch + label {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: var(--toggleText);
+    cursor: pointer;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .checkbox-wrapper-35 .switch + label::before,
+  .checkbox-wrapper-35 .switch + label::after {
+    content: '';
+    display: block;
+  }
+
+  .checkbox-wrapper-35 .switch + label::before {
+    background-color: var(--toggleButtonDecrypt);
+    border-radius: 500px;
+    height: 15px;
+    margin-right: 8px;
+    -webkit-transition: background-color 0.125s ease-out;
+    transition: background-color 0.125s ease-out;
+    width: 25px;
+  }
+
+  .checkbox-wrapper-35 .switch + label::after {
+    background-color: var(--toggleButton);
+    border-radius: 13px;
+    box-shadow: 0 3px 1px 0 rgba(37, 34, 71, 0.05), 0 2px 2px 0 rgba(37, 34, 71, 0.1), 0 3px 3px 0 rgba(37, 34, 71, 0.05);
+    height: 13px;
+    left: 1px;
+    position: absolute;
+    top: 1px;
+    -webkit-transition: -webkit-transform 0.125s ease-out;
+    transition: -webkit-transform 0.125s ease-out;
+    transition: transform 0.125s ease-out;
+    transition: transform 0.125s ease-out, -webkit-transform 0.125s ease-out;
+    width: 13px;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-text {
+    display: block;
+    margin-right: .3em;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-toggletext {
+    display: block;
+    font-weight: bold;
+    height: 15px;
+    overflow: hidden;
+    position: relative;
+    width: 55px;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-unchecked,
+  .checkbox-wrapper-35 .switch + label .switch-x-checked {
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+    transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+    transition: transform 0.125s ease-out, opacity 0.125s ease-out;
+    transition: transform 0.125s ease-out, opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-unchecked {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-checked {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-hiddenlabel {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .checkbox-wrapper-35 .switch:checked + label::before {
+    background-color: var(--toggleButtonEncrypt);
+  }
+
+  .checkbox-wrapper-35 .switch:checked + label::after {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+
+  .checkbox-wrapper-35 .switch:checked + label .switch-x-unchecked {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  .checkbox-wrapper-35 .switch:checked + label .switch-x-checked {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  .submit-btn {
+    position: relative;
+    margin: auto;
+    padding: 12px 18px;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .submit-btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: var(--submitButtonBg);
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+  }
+
+  .submit-btn span {
+    position: relative;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--submitButtonText);
+  }
+
+  .submit-btn svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--submitButtonArrow);
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+  }
+
+  .submit-btn:hover:before {
+    width: 100%;
+    background: var(--submitButtonBg);
+  }
+
+  .submit-btn:hover svg {
+    transform: translateX(0);
+  }
+
+  .submit-btn:active {
+    transform: scale(0.95);
+  }
+
+  .copy-btn {
+    display: inline;
+    height: 30px;
+    width: 30px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transform:translateY(16px);
+    -webkit-transform:translateY(16px);
+    -moz-transform:translateY(16px);
+    -ms-transform:translateY(16px);
+    -o-transform:translateY(16px);
+  }
+
+  .copy-btn:hover {
+    transform: translateY(16px) scale(1.5);
+    -webkit-transform: translateY(16px) scale(1.5);
+    -moz-transform: translateY(16px) scale(1.5);
+    -ms-transform: translateY(16px) scale(1.5);
+    -o-transform: translateY(16px) scale(1.5);
+  }
+@media screen and (max-width: 700px) {
+  .copy-btn {
+    margin-top: 20px;
+  }
+}
+</style>
+<div class="container">
+  <h1>Secure Message Exchange</h1>
+  <p class="description">Ensure your messages are securely exchanged.</p>
+  <div class="form-container">
+    <form method="POST" action="{{ url_for('securemessage') }}">
+      <div class="checkbox-wrapper-35">
+        <input value="private" name="switch" id="switch" type="checkbox" class="switch" checked>
+        <label for="switch">
+          <span class="switch-x-text">Ready to </span>
+          <span class="switch-x-toggletext">
+            <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Decrypt</span>
+            <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Encrypt</span>
+          </span>
+        </label>
+      </div>
+      <input type="text" class="field" id="messageInput" name="plain" placeholder="Your message goes here" required>
+      <button type="submit" class="submit-btn">
+        <span id="submit"></span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </form>
+  </div>
+  <div class="json-data">
+    <p id="jsonDataDisplay"></p>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/messageEncode.js') }}"></script>
+{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

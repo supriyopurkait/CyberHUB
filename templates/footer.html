@@ -1,0 +1,99 @@
+{% block body%}
+{% endblock %}
+    <style>
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; 
+            align-items: center;
+        }
+        .footer-content footer {
+            position: relative;
+            bottom: -53px;
+            width: 100vw;
+            margin: 0 0;
+            background-color: #222; 
+            color: #fff;
+            padding: 10px 0; 
+            text-align: center;
+            font-family: 'Arial', sans-serif; 
+            z-index: 9999;
+        }
+        .footer-content p {
+            margin: 0;
+            font-size: 12px; 
+            width: 100%;
+        }
+
+        .footer-content .footer_menuitems {
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 10px;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-content .footer_menuitems:hover {
+            color: #ffcc00;
+        }
+
+        .footer-content .footer_menuitems i {
+            margin-right: 5px;
+        }
+
+        .footer-content .social-icons {
+            margin: 10px 0;
+        }
+
+        .footer-content .social-icons a {
+            color: #fff;
+            font-size: 16px; 
+            margin: 0 8px;
+            transition: color 0.3s;
+        }
+
+        .footer-content .social-icons a:hover {
+            color: #ffcc00;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content footer {
+                padding: 5px;
+            }
+
+            .footer-content p {
+                font-size: 10px;
+            }
+
+            .footer-content .footer_menuitems {
+                font-size: 10px;
+                margin: 0 5px;
+            }
+
+            .footer-content .social-icons a {
+                font-size: 14px;
+                margin: 0 5px;
+            }
+        }
+    </style>
+    <div class="footer-content">
+        <footer>
+            <div class="footer_menuitems">
+                <a href="{{ url_for('securemessage') }}" class="footer_menuitems" id="footer_securemessage"><i class="fas fa-lock"></i>Secure Message</a>
+                <a href="{{ url_for('hashid') }}" class="footer_menuitems" id="footer_hashid"><i class="fas fa-fingerprint"></i>Hash Identifier</a>
+                <a href="{{ url_for('passwordleak') }}" class="footer_menuitems" id="footer_passwordleak"><i class="fas fa-key"></i>DarkWeb Password Leak Check</a>
+                <a href="{{ url_for('emailleak') }}" class="footer_menuitems" id="footer_emailleak"><i class="fas fa-envelope"></i>DarkWeb Email Leak Check</a>
+                <a href="{{ url_for('help') }}" class="footer_menuitems" id="footer_help"><i class="fas fa-question-circle"></i>Help & FAQ</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2024 CyberHub. All rights reserved.</p>
+        </footer>
+        <script src="https://kit.fontawesome.com/788287f951.js" crossorigin="anonymous"></script>
+    <div>

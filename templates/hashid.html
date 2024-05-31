@@ -1,0 +1,144 @@
+{%extends 'navigation.html' %}
+{% block body%}
+<style>
+    .heading {
+        max-width: 700px;
+        margin: 127px auto 0 auto;
+        padding: 20px;
+        text-align: center;
+        font-family: "Radio Canada Big", sans-serif;
+        font-size: 50px;
+        font-weight: 700;
+        color: var(--heading);
+    }  
+    .description {
+        max-width: 700px;
+        margin: -5px auto 0 auto;
+        padding: 20px;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        color: var(--description);
+    }
+
+    .form {
+        max-width: 700px;
+        margin: 17px auto 0 auto;
+        padding: 20px;
+        text-align: center;
+        background-color: var(--formBg);
+        backdrop-filter: blur(var(--formBlurAmount));
+        border-radius: 10px;
+        box-shadow: 0 12px 14px rgba(0, 0, 0, 0.2);
+    }
+    .form input[type=text] {
+        background-color: var(--formBg);
+        backdrop-filter: blur(var(--formBlurAmount));
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .json-Data {
+        max-width: 700px;
+        margin: 30px auto 0 auto;
+        padding: 20px;
+        background-color: var(--outputBg);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        box-shadow: 0 12px 14px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #jsonDataDisplay {
+        color: var(--outputText);
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        margin-right: 10px;
+        flex-direction: row;
+    }
+    .submit-btn {
+        position: relative;
+        margin: auto;
+        padding: 12px 18px;
+        transition: all 0.2s ease;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+    .submit-btn:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        border-radius: 50px;
+        background: var(--submitButtonBg);
+        width: 45px;
+        height: 45px;
+        transition: all 0.3s ease;
+    }
+    .submit-btn span {
+        position: relative;
+        font-family: "Ubuntu", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: var(--submitButtonText);
+    }
+    .submit-btn svg {
+        position: relative;
+        top: 0;
+        margin-left: 10px;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: var(--submitButtonArrow);
+        stroke-width: 2;
+        transform: translateX(-5px);
+        transition: all 0.3s ease;
+    }
+    .submit-btn:hover:before {
+        width: 100%;
+        background: var(--submitButtonBg);
+    }
+    
+    .submit-btn:hover svg {
+        transform: translateX(0);
+    }
+    
+    .submit-btn:active {
+        transform: scale(0.95);
+    }
+</style>
+<h1 class="heading">Hash Identifier</h1>
+<p class="description">Guess what kind of hashing algorithm is used with high accuracy</p>
+<div class="form-container">
+    <div class="form">
+        <form method="POST" action="{{ url_for('hashid') }}">
+            <input type="text" class="field" id="hash" name="hash" placeholder="Enter hash here." required>
+            <br>
+            <button type="submit" class="submit-btn">
+                <span id="submit">Identify</span>
+                <svg width="15px" height="10px" viewBox="0 0 13 10">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+            </button>
+        </form>           
+    </div>
+    <div class="json-Data">
+        <p id="jsonDataDisplay"></p>
+    </div>        
+</div>
+<script src="{{url_for('static',filename='js/hash_api_fetch.js')}}"></script>
+{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,111 @@
+{%extends 'navigation.html' %}
+{% block body%}
+    <style>
+        .help{
+            height: max-content;
+            padding: 80px 150px;
+        }
+        .help ul li{
+            color: var(--listElements);
+            list-style: none;
+            padding-left: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        .help ul li strong{
+            color: var(--listElements);
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            font-size: 30px;
+        }
+        .help ul li p{
+            color: var(--listElements);
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .help ul li:before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            background-size: contain;
+            background-image: url("../static/assets/circle-question-solid.svg");
+            transform: translateY(4px);
+            -webkit-transform: translateY(4px);
+            -moz-transform: translateY(4px);
+            -ms-transform: translateY(4px);
+            -o-transform: translateY(4px);
+}
+    </style>
+    <div class="help">
+        <ul>
+            <li>
+                <strong>What is CyberHUB?</strong>
+                <p>CyberHUB is a secure online platform designed to enhance your privacy and security online. It offers a range of features including message encryption for privacy, message decryption, email breach checker, password breach checker and identification of popular hash types.</p>
+            </li>
+            
+            <li>
+                <strong>How does CyberHUB ensure privacy and security?</strong>
+                <p>CyberHUB operates on a no-login-required basis, meaning no personal data is stored. We prioritize user privacy by only storing encrypted messages on our servers for future decryption purposes. We do not have access to the original content of messages, enhancing your confidentiality.</p>
+            </li>
+            
+            <li>
+                <strong>Can I trust CyberHUB with my sensitive information?</strong>
+                <p>Absolutely. CyberHUB is committed to maintaining the highest standards of security and privacy. Our platform is designed with user security in mind, and we do not collect or store any user data beyond encrypted messages for decryption purposes.</p>
+            </li>
+            
+            <li>
+                <strong>Does CyberHUB stores cookies?</strong>
+                <p>No, CyberHUB does not store cookies. We do not use cookies for tracking or any other purposes.</p>
+            </li>
+            
+            <li>
+                <strong>How does the message encryption feature work?</strong>
+                <p>Our message encryption feature allows you to encrypt your messages for enhanced privacy. Simply input your message, and our platform will encrypt it using robust encryption algorithms. You can then send the encrypted message via other platforms for added security.</p>
+            </li>
+            
+            <li>
+                <strong>Can I easily decrypt messages encrypted with CyberHUB?</strong>
+                <p>Yes, decryption is simple and straightforward. You can easily decrypt it using our platform if the message was encrypted using our platform. Just paste the encrypted message into the designated area, and our system will decrypt it, allowing you to view the original content securely.</p>
+            </li>
+            
+            <li>
+                <strong>Can the encrypted message be decrypted without CyberHUB?</strong>
+                <p>No, the encrypted message cannot be decrypted without CyberHUB. We use a different approach to encrypt the message, and the message will be decrypted in the same way, and you will be able to view the original content. Even brute-force attacks will not be able to decrypt the message at all.</p>
+            </li>
+            
+            <li>
+                <strong>What is the password breach checker and how does it work?</strong>
+                <p>The password breach checker also utilizes the Have I Been Pwned API to determine if your passwords have been compromised. By entering your password, our system securely queries the Have I Been Pwned database to ensure its security. This feature helps you maintain strong, secure passwords to protect your online accounts.</p>
+            </li>
+            
+            <li>
+                <strong>How does the email breach checker work?</strong>
+                <p>Our email breach checker utilizes the Have I Been Pwned API to verify if your email address has been compromised in any known data breaches. Simply enter your email address, and our system will securely query the Have I Been Pwned database to alert you if your information has been compromised.</p>
+            </li>
+            
+            <li>
+                <strong>How does CyberHUB identify popular hash types?</strong>
+                <p>Our platform includes a feature to identify popular hash types. If you encounter a hash and want to determine its type, simply input the hash into our system, and it will identify the hash type for you, providing valuable information for security and analysis purposes.</p>
+            </li>
+            
+            <li>
+                <strong>Is CyberHUB easy to use?</strong>
+                <p>Yes, CyberHUB is designed with simplicity in mind. Our user-friendly interface ensures a seamless experience for all users. Whether you're encrypting messages, checking for breaches, or identifying hash types, our platform makes it easy and intuitive.</p>
+            </li>
+            
+            <li>
+                <strong>Does CyberHUB display advertisements?</strong>
+                <p>No, we do not display advertisements on our platform. We prioritize user experience and privacy, which is why you won't encounter any ads while using CyberHUB. Our focus is solely on providing a secure and efficient service for our users.</p>
+            </li>
+        </ul>
+    </div>
+{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}
